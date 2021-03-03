@@ -8,12 +8,13 @@
                 Filter by:
             </div>
             <div class="col-md-4">
-                <input type="text" />
+                <input type="text" 
+                        [(ngModel)]='listFilter'/>
             </div>
         </div>
         <div class="row">
             <div class="col-md-6">
-                <p>Filtered by:<p>
+                <p>Filtered by: {{listFilter}}<p>
             </div>
         </div>
     </div>
@@ -23,8 +24,8 @@
             <thead>
                 <tr>
                     <th scope="col">
-                        <button class="btn btn-primary">
-                            Show Image
+                        <button class="btn btn-primary" (click)='toggleImage()'>
+                            {{showImage ? "Hide":"Show"}} Images
                         </button>
                     </th>
                     <th scope="col">Product</th>
@@ -36,7 +37,8 @@
             </thead>
             <tbody>
                 <tr *ngFor="let product of products">
-                    <td><img src={{product.imageUrl}}
+                    <td><img *ngIf="showImage"
+                        src={{product.imageUrl}} 
                         title={{product.productName}} alt={{product.productName}}
                         [style.width.px] = 'imageWidth'
                         [style.margin.px] = 'imageMargin'    > 
